@@ -1,14 +1,1 @@
-[
-    {
-        "title": "test",
-        "body": "testing"
-    },
-    {
-        "title": "another test!",
-        "body": "working!"
-    },
-    {
-        "title": "yet another test!",
-        "body": "working!"
-    }
-]
+[{"title":"hello!","body":"hi!"}]
