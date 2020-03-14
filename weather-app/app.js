@@ -1,7 +1,8 @@
 const request = require('postman-request');
+const geocode = require('./utils/geocode');
 
-
-const url = //API KEY REMOVED
+/*
+const url = //DARKSKY API KEY REMOVED
 
 request({ url: url, json: true }, (error, response) => {
     if(error) {
@@ -13,10 +14,10 @@ request({ url: url, json: true }, (error, response) => {
         console.log(`${response.body.daily.data[0].summary} It is currently ${currently.temperature} degrees outside. There is a ${currently.precipProbability}% chance of rain`);    
     }
 })
+*/
 
-
-
-const latLongURL = //API KEY REMOVED
+/*
+const latLongURL = //MAPBOX API KEY REMOVED
 request({ url: latLongURL, json: true }, (error, response) => {
     if(error) {
         console.log('ERROR: Unable to connect to location services.')
@@ -29,3 +30,11 @@ request({ url: latLongURL, json: true }, (error, response) => {
     }
 
 });
+*/
+
+
+
+geocode('Charlotte', (error, data) => {
+    console.log('Error:', error);
+    console.log('Data:',data);
+})
