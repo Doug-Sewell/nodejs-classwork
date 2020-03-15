@@ -1,7 +1,7 @@
 const request = require('postman-request');
 
 const geocode = (address, callback) => {
-    const url = //MAPBOX API KEY REMOVED.
+    const url = //MAPBOX API INFO REMOVED.
     request({url:url,json:true}, (error, response) => {
         if(error){
             callback('Error - unable to connect to locaiton services',null);
@@ -11,9 +11,8 @@ const geocode = (address, callback) => {
         } else {
             callback(null,{
                 location: response.body.features[0].place_name,
-                latitude: response.body.features[0].center[0],
-                longitude: response.body.features[0].center[1]
-
+                latitude: response.body.features[0].center[1],
+                longitude: response.body.features[0].center[0]
             })
         }
     })

@@ -1,40 +1,32 @@
 const request = require('postman-request');
 const geocode = require('./utils/geocode');
+const forecast = require('./utils/forecast');
 
-/*
-const url = //DARKSKY API KEY REMOVED
 
-request({ url: url, json: true }, (error, response) => {
-    if(error) {
-        console.log('Error! Unable to connect to location services');
-    } else if (response.body.error) {
-        console.log('Unable to find location. Please try again.')
-    } else {
-        const currently = response.body.currently;
-        console.log(`${response.body.daily.data[0].summary} It is currently ${currently.temperature} degrees outside. There is a ${currently.precipProbability}% chance of rain`);    
-    }
-})
-*/
+const city = process.argv[2];
 
-/*
-const latLongURL = //MAPBOX API KEY REMOVED
-request({ url: latLongURL, json: true }, (error, response) => {
-    if(error) {
-        console.log('ERROR: Unable to connect to location services.')
-    } else if(response.body.features.length == 0) {
-        console.log('Unable to find location. Please try again.');
-    } else {
-        const latLong = response.body.features[0].center;
-        console.log(`Longitude: ${latLong[0]}`);
-        console.log(`Latitude: ${latLong[1]}`);
-    }
+if (!city) {
+    console.log('Please provide a location to look up the forecast.');
+} else {
+    geocode(city, (error, data) => {
+        if (error) {
+            //The return statement causes the code to stop running. We could use an else
+            //statement, but this makes the code look cleaner so we don't need to nest
+            //everything in an else clause.
+            return console.log('Error:', error);
+        }
 
-});
-*/
+        forecast(data.latitude, data.longitude, (error, forecastData) => {
+            if (error) {
+                return console.log(error);
+
+            }
+
+            console.log(data.location);
+            console.log(forecastData);
+        });
+    });
+}
 
 
 
-geocode('Charlotte', (error, data) => {
-    console.log('Error:', error);
-    console.log('Data:',data);
-})
