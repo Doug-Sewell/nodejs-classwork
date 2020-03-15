@@ -1,15 +1,15 @@
 const request = require('postman-request');
 
 const forecast = (long, lat, callback) => {
-    const url = //DARKSKY API INFO REMOVED.
+    const url = //DARK SKY API INFO REMOVED.
 
-    request({url:url,json:true}, (error,response) => {
+    request({url,json:true}, (error,{body}) => {
         if(error) {
             callback('ERROR: Unable to connect to location services',null);
-        } else if(response.body.error) {
+        } else if(body.error) {
             callback('ERROR: Location does not exist! Please try again.',null)
         } else {
-            callback(null,`${response.body.daily.data[0].summary} It is currently ${response.body.currently.temperature} degrees outside. There is a ${response.body.currently.precipProbability}% chance of rain`);
+            callback(null,`${body.daily.data[0].summary} It is currently ${body.currently.temperature} degrees outside. There is a ${body.currently.precipProbability}% chance of rain`);
             console.log();    
         }
     })
