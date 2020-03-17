@@ -1,24 +1,12 @@
+const path = require('path');
 const express = require('express');
 
 const app = express();
-
+const publicDirectoryPath = path.join(__dirname,'../public');
+app.use(express.static(publicDirectoryPath));
 
 //What the server should do when the user visits
 //a certain url. (Send back HTML? JSON?)
-app.get('', (req,res) => {
-    res.send('<h1>Weather</h1>');
-});
-
-app.get('/help',(req,res) => {
-    res.send({
-        name: 'Doug',
-        location:'Charlotte'
-    });
-});
-
-app.get('/about',(req,res) => {
-    res.send('<h1>About</h1>');
-});
 
 app.get('/weather',(req,res) => {
     res.send({
