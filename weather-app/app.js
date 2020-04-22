@@ -20,10 +20,10 @@ if (!city) {
             if (error) {
                 return console.log(error);
 
+            } else {
+                console.log(location);
+                console.log(forecastData);    
             }
-
-            console.log(location);
-            console.log(forecastData);
         });
     });
 }
